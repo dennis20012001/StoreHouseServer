@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 10 mar 2025, 12:25:45 by Hibernate Tools 6.5.1.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="storehouse" name="Objects.Products" optimistic-lock="none" table="products">
+        <id name="productId" type="int">
+            <column name="product_id"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="image" type="binary">
+            <column name="image"/>
+        </property>
+        <property name="name" type="string">
+            <column length="30" name="name"/>
+        </property>
+        <property name="amount" type="java.lang.Integer">
+            <column name="amount"/>
+        </property>
+        <property name="productLimit" type="java.lang.Integer">
+            <column name="productLimit"/>
+        </property>
+        <property name="season" type="java.lang.Boolean">
+            <column name="season"/>
+        </property>
+        <property name="enabled" type="java.lang.Boolean">
+            <column name="enabled"/>
+        </property>
+        <set fetch="select" inverse="true" lazy="true" name="invoiceDetailses" table="invoice_details">
+            <key>
+                <column name="product_id" not-null="true"/>
+            </key>
+            <one-to-many class="Objects.InvoiceDetails"/>
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 10 mar 2025, 12:25:45 by Hibernate Tools 6.5.1.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="storehouse" name="Objects.Users" optimistic-lock="none" table="users">
+        <id name="idUser" type="java.lang.Integer">
+            <column name="id_user"/>
+            <generator class="identity"/>
+        </id>
+        <property name="name" type="string">
+            <column length="100" name="name" not-null="true"/>
+        </property>
+        <property name="mail" type="string">
+            <column length="100" name="mail" not-null="true" unique="true"/>
+        </property>
+        <property name="image" type="binary">
+            <column name="image"/>
+        </property>
+        <property name="pass" type="string">
+            <column length="255" name="pass" not-null="true"/>
+        </property>
+        <property name="rol" type="boolean">
+            <column name="rol" not-null="true"/>
+        </property>
+        <set fetch="select" inverse="true" lazy="true" name="invoiceses" table="invoices">
+            <key>
+                <column name="id_user" not-null="true"/>
+            </key>
+            <one-to-many class="Objects.Invoices"/>
+        </set>
+    </class>
+</hibernate-mapping>

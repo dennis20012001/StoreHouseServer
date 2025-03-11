@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated 10 mar 2025, 12:25:45 by Hibernate Tools 6.5.1.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="storehouse" name="Objects.InvoiceDetails" optimistic-lock="none" table="invoice_details">
+        <id name="detailId" type="java.lang.Integer">
+            <column name="detail_id"/>
+            <generator class="identity"/>
+        </id>
+        <many-to-one class="Objects.Products" fetch="select" name="products">
+            <column name="product_id" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="Objects.Invoices" fetch="select" name="invoices">
+            <column name="invoice_id" not-null="true"/>
+        </many-to-one>
+        <property name="quantity" type="int">
+            <column name="quantity" not-null="true"/>
+        </property>
+        <property name="paid" type="boolean">
+            <column name="paid" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>
