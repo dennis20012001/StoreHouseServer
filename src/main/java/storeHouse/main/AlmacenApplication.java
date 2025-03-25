@@ -7,11 +7,11 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
-@EntityScan("storeHouse.Objects") 
-@ComponentScan("storeHouse") 
-@EnableJpaRepositories("storeHouse.Repositories") 
+@EntityScan("storeHouse.Objects")
+@ComponentScan({"storeHouse", "storeHouseRepositories", "storeHouseServices"})
+@EnableJpaRepositories("storeHouseRepositories")
 public class AlmacenApplication {
-	public static void main(String[] args) {
-		SpringApplication.run(AlmacenApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(AlmacenApplication.class, args);
+    }
 }

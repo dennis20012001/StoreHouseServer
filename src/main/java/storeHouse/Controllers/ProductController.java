@@ -9,15 +9,15 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import storeHouse.Hibernate.utils.HibernateUtil;
-import storeHouse.Objects.Products;
+import storeHouse.Objects.Product;
 
 @RestController
 @RequestMapping("/products")
 public class ProductController {
 
     @GetMapping("/all")
-    public List<Products> getAllProducts() {
-        List<Products> ret = null;
+    public List<Product> getAllProducts() {
+        List<Product> ret = null;
         String hql = "FROM Products"; 
         Session session = null;
         Transaction transaction = null;
@@ -25,7 +25,7 @@ public class ProductController {
         try {
             session = HibernateUtil.getSessionFactory().openSession();
             transaction = session.beginTransaction();
-            Query<Products> query = session.createQuery(hql, Products.class);
+            Query<Product> query = session.createQuery(hql, Product.class);
             ret = query.list();
             transaction.commit();
         } catch (Exception e) {

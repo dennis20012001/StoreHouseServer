@@ -8,13 +8,13 @@ import org.hibernate.query.Query;
 import org.springframework.web.bind.annotation.RestController;
 
 import storeHouse.Hibernate.utils.HibernateUtil;
-import storeHouse.Objects.Invoices;
+import storeHouse.Objects.Invoice;
 
 @RestController
 public class InvoiceController {
 	@SuppressWarnings("deprecation")
-	public List<Invoices> getAllInvoices() {
-		List<Invoices> ret = null;
+	public List<Invoice> getAllInvoices() {
+		List<Invoice> ret = null;
 		String hql = "from Invoices";
 		Session session = null;
 		Transaction transaction = null;
