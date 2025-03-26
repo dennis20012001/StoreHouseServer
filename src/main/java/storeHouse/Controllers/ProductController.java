@@ -1,44 +1,34 @@
 package storeHouse.Controllers;
 
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.bind.annotation.GetMapping;
+
+import storeHouse.Objects.Product;
 
 import java.util.List;
 
-import org.hibernate.Session;
-import org.hibernate.Transaction;
-import org.hibernate.query.Query;
-import storeHouse.Hibernate.utils.HibernateUtil;
-import storeHouse.Objects.Product;
+import storeHouseServices.ProductService;
 
 @RestController
-@RequestMapping("/products")
+@RequestMapping("/api/product")
 public class ProductController {
+    private final ProductService productService;
 
-    @GetMapping("/all")
-    public List<Product> getAllProducts() {
-        List<Product> ret = null;
-        String hql = "FROM Products"; 
-        Session session = null;
-        Transaction transaction = null;
+    public ProductController(ProductService productService) {
+        this.productService = productService;
+    }
 
-        try {
-            session = HibernateUtil.getSessionFactory().openSession();
-            transaction = session.beginTransaction();
-            Query<Product> query = session.createQuery(hql, Product.class);
-            ret = query.list();
-            transaction.commit();
-        } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
-            System.out.println("Error: " + e.getMessage());
-        } finally {
-            if (session != null) {
-                session.close();
-            }
-        }
+    @GetMapping
+    public List<Product> listarUsuarios() {
+        return productService.listarUsuarios();
+    }
 
-        return ret;
+    @PostMapping
+    public Product guardarUsuario(@RequestBody Product product) {
+        return productService.guardarUsuario(product);
+    }
+
+    @DeleteMapping("/{id}")
+    public void eliminarUsuario(@PathVariable Long id) {
+    	productService.eliminarUsuario(id);
     }
 }

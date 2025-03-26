@@ -1,42 +1,37 @@
 package storeHouse.Controllers;
 
 import java.util.List;
-
-import org.hibernate.Session;
-import org.hibernate.Transaction;
-import org.hibernate.query.Query;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import storeHouse.Hibernate.utils.HibernateUtil;
 import storeHouse.Objects.Invoice;
+import storeHouseServices.InvoiceService;
 
 @RestController
+@RequestMapping("/api/invoice")
 public class InvoiceController {
-	@SuppressWarnings("deprecation")
-	public List<Invoice> getAllInvoices() {
-		List<Invoice> ret = null;
-		String hql = "from Invoices";
-		Session session = null;
-		Transaction transaction = null;
+	private final InvoiceService invoiceService;
 
-		try {
-			session = HibernateUtil.getSessionFactory().openSession();
-			transaction = session.beginTransaction();
-			Query query = session.createQuery(hql);
-			ret = query.list();
+	public InvoiceController(InvoiceService invoiceService) {
+		this.invoiceService = invoiceService;
+	}
 
-			transaction.commit();
-		} catch (Exception e) {
-			if (transaction != null) {
-				transaction.rollback();
-			}
-			System.out.println("Error: " + e.getMessage());
-		} finally {
-			if (session != null) {
-				session.close();
-			}
-		}
+	@GetMapping
+	public List<Invoice> listarUsuarios() {
+		return invoiceService.listarUsuarios();
+	}
 
-		return ret;
+	@PostMapping
+	public Invoice guardarUsuario(@RequestBody Invoice invoice) {
+		return invoiceService.guardarUsuario(invoice);
+	}
+
+	@DeleteMapping("/{id}")
+	public void eliminarUsuario(@PathVariable Long id) {
+		invoiceService.eliminarUsuario(id);
 	}
 }
