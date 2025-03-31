@@ -2,7 +2,7 @@ package storeHouseServices;
 
 import org.springframework.stereotype.Service;
 
-import storeHouse.Objects.Users;
+import storeHouse.Objects.User;
 import storeHouseRepositories.UserRepository;
 
 import java.util.List;
@@ -15,15 +15,24 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public List<Users> listarUsuarios() {
+    public List<User> getAllUsers() {
         return userRepository.findAll();
     }
+    
+    //Get user by id, else, get null
+    public User getUserById(Long id) {
+    	return userRepository.findById(id).orElse(null);
+    }
 
-    public Users guardarUsuario(Users user) {
+    public User saveUser(User user) {
         return userRepository.save(user);
     }
 
-    public void eliminarUsuario(Long id) {
+    public User updateUser(User user) {
+    	return userRepository.save(user);
+    }
+
+    public void deleteUser(Long id) {
         userRepository.deleteById(id);
     }
 }
