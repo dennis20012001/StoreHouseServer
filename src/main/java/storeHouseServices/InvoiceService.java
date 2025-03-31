@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import jakarta.persistence.EntityNotFoundException;
 import storeHouse.Objects.Invoice;
+import storeHouse.Objects.ProductInvoice;
 import storeHouse.Objects.User;
 import storeHouseRepositories.InvoiceRepository;
 
@@ -27,9 +29,12 @@ public class InvoiceService {
 	public Invoice saveInvoice(Invoice invoice) {
 		return invoiceRepository.save(invoice);
 	}
-
+	
 	public Invoice updateInvoice(Invoice invoice) {
-		return invoiceRepository.save(invoice);
+	    if (!invoiceRepository.existsById(invoice.getInvoiceId())) {
+	        throw new EntityNotFoundException("Invoice con ID " + invoice.getInvoiceId() + " no encontrado.");
+	    }
+	    return invoiceRepository.save(invoice);
 	}
 
 	public void deleteInvoice(Long id) {

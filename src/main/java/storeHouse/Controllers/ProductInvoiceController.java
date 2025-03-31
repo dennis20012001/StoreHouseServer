@@ -38,20 +38,20 @@ public class ProductInvoiceController {
 
  	// Get productInvoice by id
  	@GetMapping("/get/{id}")
- 	public Invoice getInvoiceById(Long id) {
+ 	public ProductInvoice getInvoiceById(Long id) {
  		return productInvoiceService.getProductInvoiceById(id);
  	}
 
  	// Save productInvoice
  	@PostMapping("/save")
- 	public Invoice saveInvoice(@RequestBody Invoice invoice) {
- 		return productInvoiceService.saveProductInvoice(invoice);
+ 	public ProductInvoice saveInvoice(@RequestBody ProductInvoice productInvoice) {
+ 		return productInvoiceService.saveProductInvoice(productInvoice);
  	}
 
  	// Update productInvoice by id
  	@PutMapping("/update")
- 	public Invoice updateInvoice(@RequestBody Invoice invoice) {
- 		return productInvoiceService.updateProductInvoice(invoice);
+ 	public ProductInvoice updateInvoice(@RequestBody ProductInvoice productInvoice) {
+ 		return productInvoiceService.updateProductInvoice(productInvoice);
  	}
 
  	// Delete productInvoice by id

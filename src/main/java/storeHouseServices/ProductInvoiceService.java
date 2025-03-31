@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import jakarta.persistence.EntityNotFoundException;
 import storeHouse.Objects.Invoice;
 import storeHouse.Objects.ProductInvoice;
 import storeHouseRepositories.ProductInvoiceRepository;
@@ -16,41 +17,27 @@ public class ProductInvoiceService {
         this.invoiceDetailsRepository = invoiceDetailsRepository;
     }
 
-    public List<ProductInvoice> listarUsuarios() {
-        return invoiceDetailsRepository.findAll();
-    }
-
-    public ProductInvoice guardarUsuario(ProductInvoice productInvoice) {
-        return invoiceDetailsRepository.save(productInvoice);
-    }
-
-    public void eliminarUsuario(Long id) {
-    	invoiceDetailsRepository.deleteById(id);
-    }
-
 	public List<ProductInvoice> getAllProductInvoice() {
-		// TODO Auto-generated method stub
-		return null;
+		return invoiceDetailsRepository.findAll();
 	}
 
-	public Invoice getProductInvoiceById(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+	public ProductInvoice getProductInvoiceById(Long id) {
+		return invoiceDetailsRepository.findById(id).orElse(null);
 	}
 
-	public Invoice saveProductInvoice(Invoice invoice) {
-		// TODO Auto-generated method stub
-		return null;
+	public ProductInvoice saveProductInvoice(ProductInvoice productInvoice) {
+		return invoiceDetailsRepository.save(productInvoice);
 	}
 
-	public Invoice updateProductInvoice(Invoice invoice) {
-		// TODO Auto-generated method stub
-		return null;
+	public ProductInvoice updateProductInvoice(ProductInvoice productInvoice) {
+	    if (!invoiceDetailsRepository.existsById(productInvoice.getDetailId())) {
+	        throw new EntityNotFoundException("ProductInvoice con ID " + productInvoice.getDetailId() + " no encontrado.");
+	    }
+	    return invoiceDetailsRepository.save(productInvoice);
 	}
 
 	public void deleteProductInvoice(Long id) {
-		// TODO Auto-generated method stub
-		
+		invoiceDetailsRepository.deleteById(id);
 	}
 
 }

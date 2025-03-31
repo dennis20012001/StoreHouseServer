@@ -2,6 +2,8 @@ package storeHouseServices;
 
 import org.springframework.stereotype.Service;
 
+import jakarta.persistence.EntityNotFoundException;
+import storeHouse.Objects.Invoice;
 import storeHouse.Objects.Product;
 import storeHouseRepositories.ProductRepository;
 
@@ -26,9 +28,12 @@ public class ProductService {
 	public Product saveProduct(Product product) {
 		return productRepository.save(product);
 	}
-
+	
 	public Product updateProduct(Product product) {
-		return productRepository.save(product);
+	    if (!productRepository.existsById(product.getProductId())) {
+	        throw new EntityNotFoundException("Product con ID " + product.getProductId() + " no encontrado.");
+	    }
+	    return productRepository.save(product);
 	}
 	
 	public void deleteProduct(Long id) {
