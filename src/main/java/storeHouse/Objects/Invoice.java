@@ -21,7 +21,7 @@ public class Invoice implements Serializable {
     private Long invoiceId;
 
     @ManyToOne
-    @JoinColumn(name = "id_user", nullable = false)
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
     @Column(name = "CIF", nullable = false, unique = true, length = 9)
@@ -83,6 +83,10 @@ public class Invoice implements Serializable {
 	public void setPaid(boolean paid) {
 		this.paid = paid;
 	}
-    
-    
+
+	@Override
+	public String toString() {
+		return "Invoice [invoiceId=" + invoiceId + ", user=" + user + ", CIF=" + CIF + ", date=" + date + ", total="
+				+ total + ", paid=" + paid + "]";
+	}
 }

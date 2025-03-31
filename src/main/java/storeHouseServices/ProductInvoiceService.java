@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import storeHouse.Objects.Invoice;
 import storeHouse.Objects.ProductInvoice;
 import storeHouseRepositories.ProductInvoiceRepository;
 
@@ -26,5 +27,30 @@ public class ProductInvoiceService {
     public void eliminarUsuario(Long id) {
     	invoiceDetailsRepository.deleteById(id);
     }
+
+	public List<ProductInvoice> getAllProductInvoice() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Invoice getProductInvoiceById(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Invoice saveProductInvoice(Invoice invoice) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Invoice updateProductInvoice(Invoice invoice) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void deleteProductInvoice(Long id) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

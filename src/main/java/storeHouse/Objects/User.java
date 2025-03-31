@@ -24,10 +24,10 @@ public class User implements Serializable {
 
 	@Column(name = "mail", unique = true, length = 100)
 	private String mail;
-
+	
 	@Column(name = "image")
-	@Lob
-	private byte[] image;
+    @Lob
+    private String image;
 
 	@Column(name = "pass", length = 255)
 	private String pass;
@@ -63,11 +63,11 @@ public class User implements Serializable {
 		this.mail = mail;
 	}
 
-	public byte[] getImage() {
+	public String getImage() {
 		return image;
 	}
 
-	public void setImage(byte[] image) {
+	public void setImage(String image) {
 		this.image = image;
 	}
 
@@ -101,7 +101,7 @@ public class User implements Serializable {
 
 	@Override
 	public String toString() {
-		return "User [userId=" + userId + ", name=" + name + ", mail=" + mail + ", image=" + Arrays.toString(image)
+		return "User [userId=" + userId + ", name=" + name + ", mail=" + mail + ", image=" + image
 				+ ", pass=" + pass + ", rol=" + rol + ", enabled=" + enabled + "]";
 	}
 }
