@@ -49,7 +49,7 @@ public class UserService {
      * @return Usuario actualizado.
      * @throws EntityNotFoundException Si el usuario no existe.
      */
-    public User updateuser(User user) {
+    public User updateUser(User user) {
 	    if (!userRepository.existsById(user.getIdUser())) {
 	        throw new EntityNotFoundException("Invoice con ID " + user.getIdUser() + " no encontrado.");
 	    }
