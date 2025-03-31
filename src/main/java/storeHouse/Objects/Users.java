@@ -14,9 +14,10 @@ public class Users implements Serializable {
 	private static final long serialVersionUID = -1350406165074818831L;
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_user")
-    private Long idUser;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_user")
+	private Long idUser;  
+
 
     @Column(name = "name", nullable = false, length = 100)
     private String name;
@@ -26,7 +27,7 @@ public class Users implements Serializable {
 
     @Column(name = "image")
     @Lob
-    private byte[] image;
+    private String image;
 
     @Column(name = "pass", length = 255)
     private String pass;
@@ -47,8 +48,8 @@ public class Users implements Serializable {
     public String getMail() { return mail; }
     public void setMail(String mail) { this.mail = mail; }
 
-    public byte[] getImage() { return image; }
-    public void setImage(byte[] image) { this.image = image; }
+    public String getImage() { return image; }
+    public void setImage(String image) { this.image = image; }
 
     public String getPass() { return pass; }
     public void setPass(String pass) { this.pass = pass; }
