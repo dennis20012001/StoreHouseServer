@@ -39,6 +39,10 @@ public class User implements Serializable {
 	@Column(name = "enabled", nullable = false)
 	private boolean enabled = true;
 
+	public enum Role {
+		USUARIO, ADMINISTRADOR
+	}
+
 	public Long getIdUser() {
 		return userId;
 	}
@@ -95,9 +99,6 @@ public class User implements Serializable {
 		this.enabled = enabled;
 	}
 
-	public enum Role {
-		USUARIO, ADMINISTRADOR
-	}
 
 	@Override
 	public String toString() {
