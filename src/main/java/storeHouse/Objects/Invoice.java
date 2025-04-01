@@ -21,8 +21,8 @@ public class Invoice implements Serializable {
     private Long invoiceId;
 
     @ManyToOne
-    @JoinColumn(name = "id_user", nullable = false)
-    private Users user;
+    @JoinColumn(name = "user_id", nullable = false)
+    private Users users;
 
     @Column(name = "CIF", nullable = false, unique = true, length = 9)
     private String CIF;
@@ -45,11 +45,11 @@ public class Invoice implements Serializable {
 	}
 
 	public Users getUser() {
-		return user;
+		return users;
 	}
 
 	public void setUser(Users user) {
-		this.user = user;
+		this.users = user;
 	}
 
 	public String getCIF() {

@@ -8,16 +8,12 @@ import jakarta.persistence.*;
 @Table(name = "users")
 public class Users implements Serializable {
 
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = -1350406165074818831L;
+    private static final long serialVersionUID = -1350406165074818831L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_user")
-	private Long idUser;  
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")  
+    private Long idUser;
 
     @Column(name = "name", nullable = false, length = 100)
     private String name;
