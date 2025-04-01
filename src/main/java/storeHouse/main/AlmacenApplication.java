@@ -13,5 +13,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 public class AlmacenApplication {
     public static void main(String[] args) {
         SpringApplication.run(AlmacenApplication.class, args);
+        
     }
 }
