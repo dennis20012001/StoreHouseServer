@@ -2,12 +2,12 @@ package storeHouseServices;
 
 import java.util.List;
 
-import storeHouse.Objects.DetailSale;
-import storeHouse.Objects.Users;
-import storeHouseRepositories.DetailSaleRepository;
-import storeHouseRepositories.SalesRepository;
-import storeHouseRepositories.UserRepository;
+import org.springframework.stereotype.Service;
 
+import storeHouse.Objects.DetailSale;
+import storeHouseRepositories.DetailSaleRepository;
+
+@Service
 public class DetailSaleService {
 	private final DetailSaleRepository detailSaleRepository;
 
