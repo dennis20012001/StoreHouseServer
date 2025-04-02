@@ -1,8 +1,7 @@
 package storeHouseRepositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import storeHouse.Objects.User;
 
-import storeHouse.Objects.Users;
-
-public interface UserRepository extends JpaRepository<Users, Long> {
+public interface UserRepository extends JpaRepository<User, Long> {
 }

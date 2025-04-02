@@ -1,6 +1,7 @@
 package storeHouse.Objects;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 import jakarta.persistence.*;
 
@@ -28,6 +29,9 @@ public class ProductInvoice implements Serializable{
 
     @Column(name = "quantity", nullable = false)
     private int quantity;
+    
+    @Column(name = "unit_price", nullable = false)
+    private BigDecimal unitPrice;
 
 	public Long getDetailId() {
 		return detailId;
@@ -61,5 +65,21 @@ public class ProductInvoice implements Serializable{
 		this.quantity = quantity;
 	}
 
-    
+	public BigDecimal getUnitPrice() {
+		return unitPrice;
+	}
+
+	public void setUnitPrice(BigDecimal unitPrice) {
+		this.unitPrice = unitPrice;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	@Override
+	public String toString() {
+		return "ProductInvoice [detailId=" + detailId + ", invoice=" + invoice + ", product=" + product + ", quantity="
+				+ quantity + ", unitPrice=" + unitPrice + "]";
+	}
 }

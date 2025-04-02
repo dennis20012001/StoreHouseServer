@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import jakarta.persistence.EntityNotFoundException;
+import storeHouse.Objects.Invoice;
 import storeHouse.Objects.ProductInvoice;
 import storeHouseRepositories.ProductInvoiceRepository;
 
@@ -15,16 +17,27 @@ public class ProductInvoiceService {
         this.invoiceDetailsRepository = invoiceDetailsRepository;
     }
 
-    public List<ProductInvoice> listarUsuarios() {
-        return invoiceDetailsRepository.findAll();
-    }
+	public List<ProductInvoice> getAllProductInvoice() {
+		return invoiceDetailsRepository.findAll();
+	}
 
-    public ProductInvoice guardarUsuario(ProductInvoice productInvoice) {
-        return invoiceDetailsRepository.save(productInvoice);
-    }
+	public ProductInvoice getProductInvoiceById(Long id) {
+		return invoiceDetailsRepository.findById(id).orElse(null);
+	}
 
-    public void eliminarUsuario(Long id) {
-    	invoiceDetailsRepository.deleteById(id);
-    }
+	public ProductInvoice saveProductInvoice(ProductInvoice productInvoice) {
+		return invoiceDetailsRepository.save(productInvoice);
+	}
+
+	public ProductInvoice updateProductInvoice(ProductInvoice productInvoice) {
+	    if (!invoiceDetailsRepository.existsById(productInvoice.getDetailId())) {
+	        throw new EntityNotFoundException("ProductInvoice con ID " + productInvoice.getDetailId() + " no encontrado.");
+	    }
+	    return invoiceDetailsRepository.save(productInvoice);
+	}
+
+	public void deleteProductInvoice(Long id) {
+		invoiceDetailsRepository.deleteById(id);
+	}
 
 }

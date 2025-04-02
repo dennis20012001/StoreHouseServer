@@ -19,9 +19,9 @@ public class Product implements Serializable {
     @Column(name = "product_id")
     private Long productId;
 
+	@Column(name = "image")
     @Lob
-    @Column(name = "image")
-    private byte[] image;
+    private String image;
 
     @Column(name = "name", nullable = false, unique = true, length = 100)
     private String name;
@@ -40,6 +40,9 @@ public class Product implements Serializable {
 
     @Column(name = "price", nullable = false)
     private BigDecimal price;
+    
+    @Column(name = "sell_price", nullable = false)
+    private BigDecimal sellPrice;
 
 	public Long getProductId() {
 		return productId;
@@ -49,11 +52,11 @@ public class Product implements Serializable {
 		this.productId = productId;
 	}
 
-	public byte[] getImage() {
+	public String getImage() {
 		return image;
 	}
 
-	public void setImage(byte[] image) {
+	public void setImage(String image) {
 		this.image = image;
 	}
 
@@ -105,6 +108,18 @@ public class Product implements Serializable {
 		this.price = price;
 	}
     
-    
+	public BigDecimal getSellPrice() {
+		return sellPrice;
+	}
 
+	public void setSellPrice(BigDecimal sellPrice) {
+		this.price = sellPrice;
+	}
+
+	@Override
+	public String toString() {
+		return "Product [productId=" + productId + ", image=" + image + ", name=" + name + ", amount=" + amount
+				+ ", minimumAmount=" + minimumAmount + ", season=" + season + ", enabled=" + enabled + ", price="
+				+ price + ", sellPrice=" + sellPrice + "]";
+	}
 }

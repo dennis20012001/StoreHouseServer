@@ -6,35 +6,51 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import storeHouse.Objects.DetailSale;
 import storeHouse.Objects.Invoice;
-import storeHouseServices.InvoiceService;
+import storeHouseServices.DetailSaleService;
 
 @RestController
 @RequestMapping("/api/detailSale")
 public class DetailSaleController {
-	private final InvoiceService invoiceService;
+	private final DetailSaleService detailSaleService;
 
-	public DetailSaleController(InvoiceService invoiceService) {
-		this.invoiceService = invoiceService;
+	public DetailSaleController(DetailSaleService detailSaleService) {
+		this.detailSaleService = detailSaleService;
 	}
 
-	@GetMapping
-	public List<Invoice> listarUsuarios() {
-		return invoiceService.listarUsuarios();
+	// Get all detailSales
+	@GetMapping("/getAll")
+	public List<DetailSale> getAllDetailSales() {
+		return detailSaleService.getAllDetailSales();
 	}
 
-	@PostMapping
-	public Invoice guardarUsuario(@RequestBody Invoice invoice) {
-		return invoiceService.guardarUsuario(invoice);
+	// Get detailSale by id
+	@GetMapping("/get/{id}")
+	public DetailSale getDetailSaleById(Long id) {
+		return detailSaleService.getDetailSaleById(id);
 	}
 
-	@DeleteMapping("/{id}")
-	public void eliminarUsuario(@PathVariable Long id) {
-		invoiceService.eliminarUsuario(id);
+	// Save detailSale
+	@PostMapping("/save")
+	public DetailSale saveDetailSale(@RequestBody DetailSale detailSale) {
+		return detailSaleService.saveDetailSale(detailSale);
 	}
 
+	// Update detailSale by id
+	@PutMapping("/update")
+	public DetailSale updateDetailSale(@RequestBody DetailSale detailSale) {
+		return detailSaleService.updateDetailSale(detailSale);
+	}
+
+	// Delete detailSale by id
+	@DeleteMapping("/delete/{id}")
+	public void deleteDetailSale(@PathVariable Long id) {
+		detailSaleService.deleteDetailSale(id);
+	}
 }
