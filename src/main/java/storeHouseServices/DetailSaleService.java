@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import jakarta.persistence.EntityNotFoundException;
 import storeHouse.Objects.DetailSale;
 import storeHouseRepositories.DetailSaleRepository;
 
@@ -15,15 +16,28 @@ public class DetailSaleService {
         this.detailSaleRepository = detailSaleRepository;
     }
 
-    public List<DetailSale> listarUsuarios() {
-        return detailSaleRepository.findAll();
-    }
+	public List<DetailSale> getAllDetailSales() {
+		return detailSaleRepository.findAll();
+	}
 
-    public DetailSale guardarUsuario(DetailSale detailSale) {
-        return detailSaleRepository.save(detailSale);
-    }
+	public DetailSale getDetailSaleById(Long id) {
+		return detailSaleRepository.findById(id).orElse(null);
+	}
 
-    public void eliminarUsuario(Long id) {
-    	detailSaleRepository.deleteById(id);
-    }
+	public DetailSale saveDetailSale(DetailSale detailSale) {
+		return detailSaleRepository.save(detailSale);
+	}
+
+	public DetailSale updateDetailSale(DetailSale detailSale) {
+		if (!detailSaleRepository.existsById(detailSale.getDetailId())) {
+	        throw new EntityNotFoundException("DetailSale con ID " + detailSale.getDetailId() + " no encontrado.");
+	    }
+	    return detailSaleRepository.save(detailSale);
+	}
+
+	public void deleteDetailSale(Long id) {
+		detailSaleRepository.deleteById(id);
+	}
+
+   
 }
