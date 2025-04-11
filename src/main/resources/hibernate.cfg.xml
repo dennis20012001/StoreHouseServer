@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory name="Connection">
+		<property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/store</property>
+		<property name="hibernate.connection.username">root</property>
+		<property name="hibernate.connection.password">password</property>
+		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+
+		<!-- Deshabilitamos la autocreación de tablas -->
+		<property name="hibernate.hbm2ddl.auto">update</property> <!-- jndi -->		
+
+		<!-- Mostrar SQL en consola -->
+		<property name="hibernate.show_sql">false</property>
+		<property name="hibernate.format_sql">false</property>
+
+		<!-- Paquete que contiene las entidades -->
+		<property name="hibernate.ejb.entitymanager.packagesToScan">com.example.ProyectoPracticas.base.entities</property>
+
+		<!-- Configuración de sesiones -->
+		<property name="hibernate.current_session_context_class">thread</property>
+
+	</session-factory>
+</hibernate-configuration>
