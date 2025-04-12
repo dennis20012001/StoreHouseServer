@@ -65,10 +65,9 @@ public class SaleController {
             sale.setDate(saleDTO.getDate());
             sale.setTotal(saleDTO.getTotal());
 
-            // Obtener el usuario por el ID del DTO
             User user = userService.getUserById(saleDTO.getUserId());
             if (user != null) {
-                sale.setUserId(user); // Asignar el objeto User
+                sale.setUserId(user);
             } else {
                 return new ResponseEntity<>("Usuario no encontrado", HttpStatus.NOT_FOUND);
             }

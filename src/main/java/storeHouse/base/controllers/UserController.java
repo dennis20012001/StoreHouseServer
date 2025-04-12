@@ -58,7 +58,7 @@ public class UserController {
 				user.setRol(rol);
 			} catch (IllegalArgumentException e) {
 				// Si el rol es inválido
-				return new ResponseEntity<>("El rol especificado no es válido", HttpStatus.BAD_REQUEST);
+				return new ResponseEntity<>("El rol no es válido", HttpStatus.BAD_REQUEST);
 			}
 
 			user.setEnabled(userDTO.getEnabled());

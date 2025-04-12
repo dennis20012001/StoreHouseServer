@@ -63,9 +63,9 @@ public class InvoiceController {
 			invoice.setTotal(invoiceDTO.getTotal());
 
 			// Obtener el usuario por el ID del DTO
-			User user = userService.getUserById(invoiceDTO.getUserId()); // Buscar el usuario por ID
+			User user = userService.getUserById(invoiceDTO.getUserId());
 			if (user != null) {
-				invoice.setUserId(user); // Asignar el objeto User
+				invoice.setUserId(user);
 			} else {
 				return new ResponseEntity<>("Usuario no encontrado", HttpStatus.NOT_FOUND);
 			}
@@ -93,9 +93,8 @@ public class InvoiceController {
 			existingInvoice.setTotal(invoiceDTO.getTotal());
 
 			// Obtener el usuario por el ID del DTO
-			User user = userService.getUserById(invoiceDTO.getUserId()); // Buscar el usuario por ID
+			User user = userService.getUserById(invoiceDTO.getUserId());
 			if (user != null) {
-				// Asignar el objeto User para mantener la relacion @ManyToOne Invoice - User
 				existingInvoice.setUserId(user); 
 			} else {
 				return new ResponseEntity<>("Usuario no encontrado", HttpStatus.NOT_FOUND);
