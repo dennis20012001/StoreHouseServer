@@ -1,11 +1,13 @@
-package com.example.almacen;
+package storeHouse;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ContextConfiguration;
 
 import storeHouse.ServerMain;
 
-@SpringBootTest(classes = ServerMain.class)  // Especifica la clase principal aquí
+@SpringBootTest
+@ContextConfiguration(classes = ServerMain.class)
 class AlmacenApplicationTests {
 
 	@Test
