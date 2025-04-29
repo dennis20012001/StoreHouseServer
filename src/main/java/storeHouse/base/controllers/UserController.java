@@ -1,6 +1,7 @@
 package storeHouse.base.controllers;
 
 import storeHouse.base.DTOs.UserDTO;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import storeHouse.base.entities.User;
 import storeHouse.base.services.UserService;
 
@@ -19,9 +20,11 @@ public class UserController {
 	 */
 
 	private final UserService userService;
-
-	public UserController(UserService userService) {
+	private final PasswordEncoder passwordEncoder;
+	
+	public UserController(UserService userService, PasswordEncoder passwordEncoder) {
 		this.userService = userService;
+		this.passwordEncoder = passwordEncoder;
 	}
 
 	// Endpoint de prueba
@@ -50,7 +53,17 @@ public class UserController {
 			user.setName(userDTO.getName());
 			user.setImage(userDTO.getImage());
 			user.setMail(userDTO.getMail());
-			user.setPass(userDTO.getPass());
+			//user.setPass(userDTO.getPass());
+			
+			// Encriptar el pass
+            String password = userDTO.getPass();
+            if (password != null && !password.isEmpty()) {
+                 String hashedPassword = passwordEncoder.encode(password);
+                 user.setPass(hashedPassword);
+            } else {
+                 // Retornar BAD_REQUEST si el pass esta vacio o nulo
+                 return new ResponseEntity<>("La contraseña no puede estar vacía", HttpStatus.BAD_REQUEST);
+            }
 
 			// Convertir el rol de String a Enum (Role)
 			try {
@@ -82,10 +95,17 @@ public class UserController {
 			existingUser.setName(userDTO.getName());
 	        existingUser.setMail(userDTO.getMail());
 	        existingUser.setImage(userDTO.getImage());
-	        existingUser.setPass(userDTO.getPass());
 	        existingUser.setRol(userDTO.getRol());
 	        existingUser.setEnabled(userDTO.getEnabled());
+	        //existingUser.setPass(userDTO.getPass());
 
+	        // Enriptar el pass solo si hay uno nuevo
+            String newPassword = userDTO.getPass();
+            if (newPassword != null && !newPassword.isEmpty()) {
+                String hashedPassword = passwordEncoder.encode(newPassword);
+                existingUser.setPass(hashedPassword);
+            }
+	        
 	        User updatedUser = userService.saveUser(existingUser);
 	        return new ResponseEntity<>(updatedUser, HttpStatus.OK);
 		} else {
