@@ -32,7 +32,8 @@ public class SecurityConfig {
 						.requestMatchers("/users/getAll").permitAll() // Cualquiera puede visualizar todos los usuarios
 						// - Cuidado!!! Se envian todos los datos del usuario incluso el pass	//Eso si, está encryptado
 						
-						.requestMatchers("/products/**").permitAll() // Acceso libre a productos
+						.requestMatchers("/products/**").permitAll() // Acceso libre a 
+						.requestMatchers("/invoices/**").permitAll()
 						.anyRequest().hasRole("ADMINISTRADOR") // Todo lo demás requiere rol ADMINISTRADOR
 				).exceptionHandling(eh -> eh.authenticationEntryPoint(
 						(req, res, ex) -> res.sendError(HttpServletResponse.SC_UNAUTHORIZED)));
